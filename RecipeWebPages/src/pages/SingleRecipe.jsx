@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { recipecontext } from '../context/RecipeContext';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -8,7 +8,7 @@ const SingleRecipe = () => {
 const navigate = useNavigate();
 const params = useParams();
 const { data, setData } = useContext(recipecontext);
-const recipe = data.find((recipe)=> params.id==recipe.id);
+const recipe = data.find((recipe)=> String(recipe.id) === String(params.id));
       const { register, handleSubmit, reset } = useForm({defaultValues:{
         title:recipe.title,
         image:recipe.image,
@@ -23,16 +23,16 @@ const recipe = data.find((recipe)=> params.id==recipe.id);
 
       function submitHandle(recipe) {
           // navigate("/recipes")
-          const recipeIndex = data.findIndex((recipe)=> params.id==recipe.id);
+          const recipeIndex = data.findIndex((recipe)=> String(recipe.id) === String(params.id));
           const copyData = [...data];
-          copyData[recipeIndex] = [...copyData[recipeIndex],...recipe];
+          copyData[recipeIndex] = { ...copyData[recipeIndex], ...recipe };
           console.log(copyData[recipeIndex]);
           setData(copyData);
           toast.success("Recipe Updated!")
       }
 
       const deleteHandler = ()=>{
-        const filterdata = data.filter((recipe)=>recipe.id!==params.id);
+                const filterdata = data.filter((recipe)=> String(recipe.id) !== String(params.id));
         setData(filterdata);
         toast.success("Recipe Deleted!");
         navigate("/recipes")
@@ -109,8 +109,8 @@ const recipe = data.find((recipe)=> params.id==recipe.id);
                     Dinner
                 </option>
             </select>
-            <button className="mt-2 bg-blue-700 p-2 rounded">Update Recipe</button>
-            <button onClick={deleteHandler} className="mt-2 block bg-red-700 p-2 rounded">Delete Recipe</button>
+            <button type="submit" className="mt-2 bg-blue-700 p-2 rounded">Update Recipe</button>
+            <button type="button" onClick={deleteHandler} className="mt-2 block bg-red-700 p-2 rounded">Delete Recipe</button>
         </form>
      
       </div>
