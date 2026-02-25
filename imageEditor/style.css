@@ -1,0 +1,129 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+main section {
+  height: 100%;
+  width: 100%;
+  padding: 2rem 2rem;
+  display: flex;
+  gap: 2rem;
+}
+main section .left {
+  width: 68%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter-sm);
+  padding-top: 2rem;
+}
+main section .left .top {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+main section .left .top p {
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+main section .left .top p:active {
+  scale: 0.99;
+}
+main section .left .top #reset {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(213, 46, 46);
+  cursor: pointer;
+}
+main section .left .top #reset:active {
+  scale: 0.96;
+}
+main section .left .top #download {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: green;
+  cursor: pointer;
+}
+main section .left .top #download:active {
+  scale: 0.96;
+}
+main section .left .bottom {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--bg-secondary-color);
+  color: white;
+  border-radius: 5px;
+}
+main section .left .bottom i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+main section .left .bottom canvas {
+  max-width: 600px;
+  max-height: 400px;
+  display: none;
+}
+main section .right {
+  width: 30%;
+  height: 100%;
+  color: white;
+}
+main section .right .filters {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-secondary-color);
+  border-radius: 4px;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+}
+main section .right .filters h2 {
+  font-size: 1.5rem;
+}
+main section .right .filters .filter p {
+  font-size: 1rem;
+}
+main section .right .filters .filter input {
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+main section .right .filters .filter input::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-top: -6px;
+}
+main section .right .filters .filter input::-webkit-slider-runnable-track {
+  height: 4px;
+}/*# sourceMappingURL=style.css.map */

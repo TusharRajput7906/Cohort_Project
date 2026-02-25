@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./android-chrome-512x512.png"
+      type="image/x-icon"
+    />
+    <title>Productivity_Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="main">
+      <nav>
+        <h1>Productivity Dashboard</h1>
+        <button class="themeBtn">Change Theme</button>
+      </nav>
+      <section class="allElems">
+        <header>
+          <div class="header1">
+            <h3>12 December 2025</h3>
+            <h1>Wednesday,00:00:00 PM</h1>
+            <h4>Meerut (UP)</h4>
+          </div>
+          <div class="header2">
+            <h2>17°C</h2>
+            <h4>Light rain</h4>
+            <h3 id="precipitation">Precipitation: 35%</h3>
+            <h3 id="humidity">Humidity:49%</h3>
+            <h3 id="wind">Wind: 10 km/h</h3>
+          </div>
+        </header>
+        <div class="allfeatures">
+          <div class="todo elem" id="0">
+            <img
+              src="https://i.pinimg.com/1200x/c9/11/24/c911242ff40109a71e7d89075485a13d.jpg"
+              alt=""
+            />
+            <h2>To Do List</h2>
+          </div>
+          <div class="daily elem" id="1">
+            <img
+              src="https://i.pinimg.com/736x/23/87/d4/2387d41f094696ebb1e15173c3347124.jpg"
+              alt=""
+            />
+            <h2>Daily Planner</h2>
+          </div>
+          <div class="moti elem" id="2">
+            <img
+              src="https://i.pinimg.com/736x/de/51/3d/de513dd55624d42c57d1484b13bbacf6.jpg"
+              alt=""
+            />
+            <h2>Motivation</h2>
+          </div>
+          <div class="pomo elem" id="3">
+            <img
+              src="https://i.pinimg.com/736x/7c/bc/8b/7cbc8b82f501e5010be727b6fecde7df.jpg"
+              alt=""
+            />
+            <h2>Pomodoro Timer</h2>
+          </div>
+          <div class="goals elem" id="4">
+            <img
+              src="https://i.pinimg.com/1200x/ab/e5/a8/abe5a882eac57c725e0e7791af62c8b6.jpg"
+              alt=""
+            />
+            <h2>Daily Goals</h2>
+          </div>
+        </div>
+      </section>
+      <section class="fullElem to-do">
+        <button class="close" id="0">Close</button>
+        <h1>Your Persionalised Task List</h1>
+        <div class="outerBox">
+          <div class="addTask">
+            <form action="">
+              <input type="text" id="taskInput" placeholder="Enter Task" />
+              <textarea name="" id="" placeholder="Enter Details"></textarea>
+              <div class="mark-imp">
+                <input type="checkbox" id="mark" />
+                <label for="mark">Marks as Important!</label>
+              </div>
+              <button>Add Task</button>
+            </form>
+          </div>
+          <div class="allTask"></div>
+        </div>
+      </section>
+      <section class="fullElem daily-planner-fullpage">
+        <button class="close" id="1">Close</button>
+        <h2>Plan your day to be more Productive</h2>
+        <div class="day-planner"></div>
+      </section>
+      <section class="fullElem motivation">
+        <button class="close" id="2">Close</button>
+        <div class="outer"></div>
+      </section>
+      <section class="fullElem pomodoro">
+        <button class="close" id="3">Close</button>
+        <h1>Study with me!</h1>
+        <h2 class="session">Work Session</h2>
+        <div>
+          <p>25:00</p>
+          <button class="start">Start</button>
+          <button class="pause">Pause</button>
+          <button class="reset">Reset</button>
+        </div>
+      </section>
+      <section class="fullElem">
+        <button class="close" id="4">Close</button>
+        <h1>Daily Goals</h1>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

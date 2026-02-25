@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="calculator">
+                <div class="ans">
+                    <input type="text" id="display" disabled>
+                </div>
+
+                <button onclick="clearDisplay()" class="btns" id="emptyBtn">AC</button>
+                <button onclick="appendValue('%')" class="btns" id="percentageBtn">%</button>
+                <button onclick="deleteLast()" class="btns" id="backspaceBtn"><i class="ri-delete-back-2-line"></i></button>
+                <button onclick="appendValue('/')" class="btns" id="divideBtn">/</button>
+                <button onclick="appendValue(7)" class="btns" id="sevenBtn">7</button>
+                <button onclick="appendValue(8)" class="btns" id="eightBtn">8</button>
+                <button onclick="appendValue(9)" class="btns" id="nineBtn">9</button>
+                <button onclick="appendValue('*')" class="btns" id="multiplyBtn">×</button>
+                <button onclick="appendValue(4)" class="btns" id="fourBtn">4</button>
+                <button onclick="appendValue(5)" class="btns" id="fiveBtn">5</button>
+                <button onclick="appendValue(6)" class="btns" id="sixBtn">6</button>
+                <button onclick="appendValue('-')" class="btns" id="subtractBtn">-</button>
+                <button onclick="appendValue(1)" class="btns" id="oneBtn">1</button>
+                <button onclick="appendValue(2)" class="btns" id="twoBtn">2</button>
+                <button onclick="appendValue(3)" class="btns" id="threeBtn">3</button>
+                <button onclick="appendValue('+')" class="btns" id="addBtn">+</button>
+                <button onclick="appendValue('00')" class="btns" id="dblZeroBtn">00</button>
+                <button onclick="appendValue(0)" class="btns" id="zeroBtn">0</button>
+                <button onclick="appendValue('.')" class="btns" id="dotBtn">.</button>
+                <button onclick="calculate()" class="btns" id="equalBtn">=</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

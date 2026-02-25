@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+#adminDashBoardFooter::-webkit-scrollbar{
+    display: none;
+}
+#adminDashBoardFooter1::-webkit-scrollbar{
+    display: none;
+}

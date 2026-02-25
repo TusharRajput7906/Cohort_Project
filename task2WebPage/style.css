@@ -1,0 +1,542 @@
+@font-face {
+    font-family:aeonik;
+    font-weight: 500;
+    src: url(./fonnts.com-Aeonik-Regular.ttf);
+}
+@font-face {
+    font-family:aeonik;
+    font-weight: 700;
+    src: url(./fonnts.com-Aeonik-Bold.ttf);
+}
+:root{
+    --pri:#F8F4E1;
+    --sec:#381c0a;
+    --tri1:#FEBA17;
+    --tri2:#74512D;
+    --red:red;
+    --green:rgb(9,138,89);
+    --blue:rgb(0,191,255);
+    --black:black;
+}
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: var(--pri);
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#main{
+   height: 100%;
+    width: 100%;
+    background-color: var(--sec);
+    padding: 0.4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+nav{
+    height: 3rem;
+    width: 100%;
+    background-color: var(--tri2);
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0 1rem;
+}
+nav .themeBtn{
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: var(--pri);
+    font-weight: 700;
+    border-radius: 0.3rem;
+    color: var(--black);
+    cursor: pointer;
+    -webkit-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+}
+.themeBtn:active{
+    scale: 0.96;
+}
+section.allElems{
+    height: 100%;
+    width: 100%;
+    background-color: var(--sec);
+}
+section.allElems header{
+    height: 35%;
+    width: 100%;
+    background-image: url(https://i.pinimg.com/736x/b8/ac/61/b8ac619c5233e3203db9524520da5003.jpg);
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 2rem;
+}
+section.allElems header .header1 h1{
+    font-size: 3rem;
+    font-weight: 700;
+}
+section.allElems header .header1 h3{
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+section.allElems header .header1 h4{
+    font-size: 3rem;
+    font-weight: 500;
+}
+section.allElems header .header2 h2{
+    font-size: 3rem;
+    font-weight: 900;
+}
+section.allElems header .header2 h4{
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+section.allElems header .header2 h3{
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+section.allElems .allfeatures{
+    background-color: var(--sec);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+}
+.elem{
+    width: 15rem;
+    height: 20rem;
+    background-color: var(--tri1);
+    border-radius: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all ease 0.4s;
+    -o-transition: all ease 0.4s;
+    transition: all ease 0.4s;
+}
+.elem:hover{
+    cursor: pointer;
+}
+.elem:active{
+    scale: 0.95;
+}
+.elem img{
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+.elem h2{
+    position: absolute;
+    bottom: 4%;
+    right: 5%;
+    font-family:aeonik;
+    font-weight: 500;
+}
+section.fullElem{
+    height: 100%;
+    width: 100%;
+    background-color: var(--sec);
+    display: none;
+    position: absolute;
+    top: 0;
+}
+button.close{
+    position: absolute;
+    top: 6%;
+    right: 3%;
+    background-color: red;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.4rem;
+}
+section.to-do h1{
+    margin-top: 2%;
+    margin-left: 3%;
+    font-size: 2.5rem;
+}
+section.to-do .outerBox{
+    height: 80%;
+    width: 94%;
+    background-color: var(--sec);
+    position: absolute;
+    left: 3%;
+    top: 15%;
+    border-radius: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+section.to-do .outerBox .addTask{
+   height: 100%;
+   width: 40%;
+   background-color: var(--tri2);
+   border-radius: 1rem;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+       -ms-flex-direction: column;
+           flex-direction: column;
+   -webkit-box-align: center;
+       -ms-flex-align: center;
+           align-items: center;
+}
+section.to-do .outerBox .addTask form{
+   height: 100%;
+   width: 80%;
+   background-color: var(--tri2);
+   border-radius: 1rem;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+       -ms-flex-direction: column;
+           flex-direction: column;
+   -webkit-box-align: center;
+       -ms-flex-align: center;
+           align-items: center;
+}
+section.to-do .outerBox .addTask form input#taskInput{
+    font-size: 1.4rem;
+    padding-left: 0.5rem;
+    height: 8%;
+    width: 100%;
+    border-radius: 0.2rem;
+    border: none;
+    list-style: none;
+    font-family: aeonika;
+    background-color: var(--pri);
+    outline: none;
+    margin-bottom: 3%;
+    margin-top: 4%;
+    color: black;
+}
+section.to-do .outerBox .addTask form textarea{
+    font-size: 1.4rem;
+    height: 60%;
+    width: 100%;
+    border-radius: 0.2rem;
+    color: black;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    font-family: aeonika;
+    background-color: var(--pri);
+    outline: none;
+    margin-bottom: 5%;
+}
+section.to-do .outerBox .addTask form button{
+    font-size: 2rem;
+    height: 8%;
+    width: 100%;
+    background-color: rgb(206, 140, 35);
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+section.to-do .outerBox .addTask form button:active{
+        scale: 0.97;
+}
+section.to-do .outerBox .addTask form .mark-imp{
+        width: 100%;
+        padding-left: 0.3rem;
+        margin-bottom: 4%;
+}
+section.to-do .outerBox .addTask form .mark-imp input{
+        scale: 2;
+}
+section.to-do .outerBox .addTask form .mark-imp label{
+        scale: 2;
+        font-size: 1.3rem;
+        margin-left: 0.8rem;
+}
+section.to-do .outerBox .allTask{
+   height: 100%;
+   width: 58%;
+   background-color: var(--tri2);
+    border-radius: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    /* justify-content: center; */
+    padding-top: 1rem;
+    overflow: auto;
+}
+section.to-do .outerBox .allTask .tasks{
+    width: 90%;
+    height: 12%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0 1rem;
+    background-color: var(--pri);
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+}
+section.to-do .outerBox .allTask .tasks h2{
+    color: black;
+    font-size: 1.7rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 0.4rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+section.to-do .outerBox .allTask .tasks h2 span{
+    background-color: red;
+    padding: 0.1rem 0.2rem;
+    font-size: 0.5rem;
+    border-radius: 3rem;
+    margin-bottom: 0.6rem;
+}
+section.to-do .outerBox .allTask .tasks h2 span.true{
+   opacity: 1;
+}section.to-do .outerBox .allTask .tasks h2 span.false{
+   opacity: 0;
+}
+section.to-do .outerBox .allTask .tasks button{
+    padding: 0.5rem 1rem;
+    color: rgb(252, 252, 252);
+    font-family:aeonik;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: green;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    border-radius: 0.4rem;
+}
+section.to-do .outerBox .allTask .tasks button:active{
+    scale: 0.96;
+}
+
+
+.daily-planner-fullpage{
+    position: relative;
+}
+.daily-planner-fullpage h2{
+    font-size: 3rem;
+    padding-left: 2rem;
+    padding-top: 1.5%; 
+}
+.daily-planner-fullpage .day-planner{
+    height: 80%;
+    width: 94%;
+    background-color: var(--tri2);
+    position: absolute;
+    top: 15%;
+    left: 3%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1rem;
+    border-radius: 0.6rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+        align-content: flex-start;
+    /* justify-content: flex-start; */
+    gap: 1%;
+    overflow: auto;
+
+}
+.daily-planner-fullpage .day-planner .day-planner-time{
+    width: 49%;
+    height: 10%;
+    background-color: var(--sec);
+    border-radius: 0.2rem;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.daily-planner-fullpage .day-planner .day-planner-time p{
+    position: absolute;
+    top: 10%;
+    left: 1%;
+}
+.daily-planner-fullpage .day-planner .day-planner-time input{
+    position: absolute;
+    top: 56%;
+    left: 3%;
+    background-color: var(--sec);
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+section.motivation{
+    overflow: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+section.motivation .outer{
+    width: 25%;
+    background-color: var(--tri1);
+    -webkit-box-shadow: 0 0 10rem var(--tri1);
+            box-shadow: 0 0 10rem var(--tri1);
+    border-radius: 1rem;
+    padding-top: 6%;
+    position: relative;
+     position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+    font-size: 1.5rem;
+    padding-left: 1rem;
+    color: black;
+    padding-bottom: 2.8rem;
+    font-family:aeonik;
+    font-weight: 500;
+    border:2px solid var(--sec);
+}
+section.motivation .outer p{
+   color: var(--sec);
+}
+section.motivation .outer h4{
+    position: absolute;
+    bottom: 4%;
+    right: 2%;
+    font-size: 1.4rem;
+
+}
+section.motivation .outer .inner{
+    width: 96%;
+    /* height: 20%; */
+    border-radius: 1rem;
+    padding: 0.6rem 0;
+    background-color: var(--sec);
+    position:absolute;
+    top: 2%;
+    left: 2%;
+    font-size: 1.7rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    /* margin-bottom: 1rem; */
+    /* flex-shrink: 0; */
+}
+
+
+.pomodoro h1{
+    font-size: 3rem;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+.pomodoro div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+}
+.pomodoro .session{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+        -ms-transform: translate(-50%,0);
+            transform: translate(-50%,0);
+    background-color: green;
+    padding: 1rem 1.2rem;
+    font-size: 1.4rem;
+    border-radius: 0.2rem;
+}
+.pomodoro p{
+    font-size: 8rem;
+    text-align: center;
+    font-family: aeonik;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.pomodoro .start, .pause,.reset{
+    padding: 0.5rem 1.4rem;
+    color: var(--tri1);
+    border-radius: 0.2rem;
+    border: none;
+    -webkit-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+    -webkit-box-shadow: 0.2rem 0.2rem 0rem black;
+            box-shadow: 0.2rem 0.2rem 0rem black;
+    background-color: var(--tri2);
+    color: white;
+    font-size: 2.4rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+.pomodoro .reset:active{
+    scale: 0.96;
+}
+.pomodoro .start:active{
+    scale: 0.96;
+}
+.pomodoro .pause:active{
+    scale: 0.96;
+}
