@@ -11,13 +11,13 @@ const SingleRecipe = () => {
     const recipe = data.find((recipe) => String(recipe.id) === String(params.id));
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
-            title: recipe.title,
-            image: recipe.image,
-            chef: recipe.chef,
-            descriptions: recipe.descriptions,
-            category: recipe.category,
-            instructions: recipe.instructions,
-            ingredients: recipe.ingredients
+            title: recipe?.title,
+            image: recipe?.image,
+            chef: recipe?.chef,
+            descriptions: recipe?.descriptions,
+            category: recipe?.category,
+            instructions: recipe?.instructions,
+            ingredients: recipe?.ingredients
         }
     });
 
@@ -28,18 +28,22 @@ const SingleRecipe = () => {
         }
     }, []);
 
-    function submitHandle(recipe) {
+    function updateHandle(recipe) {
         const recipeIndex = data.findIndex((recipe) => String(recipe.id) === String(params.id));
         const copyData = [...data];
         copyData[recipeIndex] = { ...copyData[recipeIndex], ...recipe };
         console.log(copyData[recipeIndex]);
         setData(copyData);
+        localStorage.setItem("recipes",JSON.stringify(copyData));
+
         toast.success("Recipe Updated!")
     }
 
     const deleteHandler = () => {
         const filterdata = data.filter((recipe) => String(recipe.id) !== String(params.id));
         setData(filterdata);
+        localStorage.setItem("recipes",JSON.stringify(filterdata));
+
         toast.success("Recipe Deleted!");
         navigate("/recipes")
     }
@@ -52,7 +56,7 @@ const SingleRecipe = () => {
                     <h1>{recipe.title}</h1>
                 </div>
 
-                <form className="right w-1/2 p-2" onSubmit={handleSubmit(submitHandle)}>
+                <form className="right w-1/2 p-2" onSubmit={handleSubmit(updateHandle)}>
                     <input
                         className="block border-b outline-0 p-2"
                         {...register("image")}
