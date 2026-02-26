@@ -59,7 +59,6 @@ const RecipeContext = (props) => {
     ]
   }
 ]);
-    console.log(data)
   return (
     <recipecontext.Provider value={{data, setData}}>{props.children}</recipecontext.Provider>
   )
