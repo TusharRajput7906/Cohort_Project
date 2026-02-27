@@ -4,6 +4,23 @@ import { recipecontext } from '../context/RecipeContext';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
+const FAV_STORAGE_KEY = "favRecipes";
+
+const readFavIds = () => {
+    try {
+        const raw = localStorage.getItem(FAV_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+};
+
+const writeFavIds = (ids) => {
+    localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(ids));
+    window.dispatchEvent(new Event("favRecipesUpdated"));
+};
+
 const SingleRecipe = () => {
     const navigate = useNavigate();
     const params = useParams();
@@ -43,6 +60,10 @@ const SingleRecipe = () => {
         const filterdata = data.filter((recipe) => String(recipe.id) !== String(params.id));
         setData(filterdata);
         localStorage.setItem("recipes",JSON.stringify(filterdata));
+
+        const favIds = readFavIds();
+        const nextFavIds = favIds.filter((favId) => String(favId) !== String(params.id));
+        writeFavIds(nextFavIds);
 
         toast.success("Recipe Deleted!");
         navigate("/recipes")
