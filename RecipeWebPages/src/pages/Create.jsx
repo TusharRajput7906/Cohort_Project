@@ -22,64 +22,91 @@ const Create = () => {
         navigate("/recipes")
     }
     return (
-        <form onSubmit={handleSubmit(submitHandle)}>
-            <input
-                className="block border-b outline-0 p-2"
-                {...register("image")}
-                type="url"
-                placeholder="Enter image url"
-            />
-            <small className="text-red-300">This is how the error is shown</small>
-            <input
-                className="block border-b outline-0 p-2"
-                {...register("title")}
-                type="text"
-                placeholder="Recipe title"
-            />
-            <small className="text-red-300">This is how the error is shown</small>
-            <input
-                className="block border-b outline-0 p-2"
-                {...register("chef")}
-                type="text"
-                placeholder="chef name"
-            />
-            <small className="text-red-300">This is how the error is shown</small>
-            <textarea
-                className="block border-b outline-0 p-2"
-                {...register("descriptions")}
-                placeholder="//Start from here"
-            />
-            <small className="text-red-300">This is how the error is shown</small>
-            <textarea
-                className="block border-b outline-0 p-2"
-                {...register("instructions")}
-                placeholder="//Write instructions seperated by comma"
-            />
-            <small className="text-red-300">This is how the error is shown</small>
-            <textarea
-                className="block border-b outline-0 p-2"
-                {...register("ingredients")}
-                placeholder="//Write ingredients seperated by comma"
-            />
-            <select
-                className="block border-b outline-0 p-2"
-                {...register("category")}
-            >
-                <option className=" text-black" value="breakfast">
-                    Breakfast
-                </option>
-                <option className=" text-black" value="lunch">
-                    Lunch
-                </option>
-                <option className=" text-black" value="supper">
-                    Supper
-                </option>
-                <option className=" text-black" value="dinner">
-                    Dinner
-                </option>
-            </select>
-            <button className="mt-2 bg-gray-900 p-2 rounded">Save Recipe</button>
-        </form>
+        <div className="mx-auto max-w-2xl ">
+            <div className="mb-6">
+                <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">Create a recipe</h1>
+                <p className="mt-1 text-sm text-zinc-600">
+                    Add an image, short description, and the steps/ingredients.
+                </p>
+            </div>
+
+            <form onSubmit={handleSubmit(submitHandle)} className="rounded-3xl border border-zinc-200 bg-white p-4 sm:p-6 shadow-sm">
+                <div className="grid gap-5">
+                    <div className="grid gap-2">
+                        <label className="text-sm font-medium text-zinc-800">Image URL</label>
+                        <input
+                            {...register("image")}
+                            type="url"
+                            placeholder="https://..."
+                        />
+                    </div>
+
+                    <div className="grid gap-2 sm:grid-cols-2">
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium text-zinc-800">Recipe title</label>
+                            <input
+                                {...register("title")}
+                                type="text"
+                                placeholder="e.g., Paneer Butter Masala"
+                            />
+                        </div>
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium text-zinc-800">Chef</label>
+                            <input
+                                {...register("chef")}
+                                type="text"
+                                placeholder="e.g., Chef Sanjeev Kapoor"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid gap-2">
+                        <label className="text-sm font-medium text-zinc-800">Description</label>
+                        <textarea
+                            {...register("descriptions")}
+                            placeholder="A rich and creamy curry made with paneer cubes..."
+                        />
+                        <p className="text-xs text-zinc-500">Keep it short — this shows on the recipe card.</p>
+                    </div>
+
+                    <div className="grid gap-2">
+                        <label className="text-sm font-medium text-zinc-800">Instructions</label>
+                        <textarea
+                            {...register("instructions")}
+                            placeholder="Write instructions separated by comma"
+                        />
+                    </div>
+
+                    <div className="grid gap-2">
+                        <label className="text-sm font-medium text-zinc-800">Ingredients</label>
+                        <textarea
+                            {...register("ingredients")}
+                            placeholder="Write ingredients separated by comma"
+                        />
+                    </div>
+
+                    <div className="grid gap-2">
+                        <label className="text-sm font-medium text-zinc-800">Category</label>
+                        <select {...register("category")}>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="supper">Supper</option>
+                            <option value="dinner">Dinner</option>
+                        </select>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                        <button
+                            type="submit"
+                            className="inline-flex items-center justify-center rounded-xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-zinc-200"
+                        >
+                            Save recipe
+                        </button>
+                        <p className="text-xs text-zinc-500">Saved to localStorage</p>
+                    </div>
+                </div>
+            </form>
+        </div>
     );
 };
 

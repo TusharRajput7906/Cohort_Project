@@ -38,14 +38,25 @@ const Fav = () => {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-lg font-semibold text-white">Favourites</h1>
+      <div>
+        <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">Favourites</h1>
+        <p className="mt-1 text-sm text-zinc-600">Recipes you’ve liked show up here.</p>
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {favRecipes.length > 0
           ? favRecipes.map((recipe) => (
               <RecipeCard key={recipe.id} recipe={recipe} />
             ))
-          : "No favourites yet!"}
+          : (
+            <div className="sm:col-span-2 lg:col-span-3 rounded-3xl border border-dashed border-zinc-300 bg-white p-10 text-center">
+              <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-rose-50 text-rose-700 ring-1 ring-rose-200">
+                <i className="ri-heart-3-line" />
+              </div>
+              <h2 className="mt-4 text-lg font-semibold text-zinc-900">No favourites yet</h2>
+              <p className="mt-1 text-sm text-zinc-600">Open a recipe card and tap the heart.</p>
+            </div>
+          )}
       </div>
     </div>
   );

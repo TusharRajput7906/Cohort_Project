@@ -44,45 +44,51 @@ const RecipeCard = (props) => {
 
 
   return (
-    <Link
-      to={`/recipes/details/${id}`}
-      className="group block relative overflow-hidden rounded-xl border border-white/10 bg-white/5"
-    >
-      <div className="aspect-4/3 w-full overflow-hidden bg-white/5">
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
-        />
-      </div>
+    <div className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+      <Link
+        to={`/recipes/details/${id}`}
+        aria-label={`Open recipe: ${title}`}
+        className="absolute inset-0 z-0"
+      />
 
-      <div className="space-y-1 p-4">
-        <h2 className="line-clamp-1 text-base font-semibold text-white">
-          {title}
-        </h2>
-        <div className="absolute bottom-[16%] right-[5%]">
-          <button
-            type="button"
-            aria-label={isFav ? "Remove from favourites" : "Add to favourites"}
-            onClick={handleToggleFav}
-            className={`grid h-9 w-9 place-items-center rounded-full text-xl transition-colors ${
-              isFav
-                ? "bg-red-500/20 text-red-300"
-                : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-red-300"
-            }`}
-          >
-            <i className={isFav ? "ri-poker-hearts-fill" : "ri-poker-hearts-line"} />
-          </button>
+      <div className="relative z-10">
+        <div className="relative aspect-4/3 w-full overflow-hidden bg-zinc-100">
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          />
         </div>
-        <p className="text-xs text-white/70">{chef}</p>
 
-        <p className="text-sm text-white/80">
-          {excerpt}
-          {descriptions?.length > 100 ? "..." : ""} <span className="text-white/70">more</span>
-        </p>
+        <div className="space-y-2 p-3 sm:p-4">
+          <div className="space-y-1">
+            <h2 className="text-base font-semibold text-zinc-900">{title}</h2>
+            <p className="text-xs text-zinc-500">By {chef || "Unknown"}</p>
+          </div>
+
+          <p className="text-sm leading-relaxed text-zinc-600">
+            {excerpt}
+            {descriptions?.length > 100 ? "..." : ""} <span className="text-zinc-500">Read more</span>
+          </p>
+        </div>
       </div>
-    </Link>
+
+      <div className="absolute right-3 top-3 z-20">
+        <button
+          type="button"
+          aria-label={isFav ? "Remove from favourites" : "Add to favourites"}
+          onClick={handleToggleFav}
+          className={`grid h-10 w-10 place-items-center rounded-full text-xl shadow-sm ring-1 transition-colors ${
+            isFav
+              ? "bg-rose-50 text-rose-600 ring-rose-200"
+              : "bg-white/90 text-zinc-700 ring-zinc-200 hover:bg-white"
+          }`}
+        >
+          <i className={isFav ? "ri-heart-3-fill" : "ri-heart-3-line"} />
+        </button>
+      </div>
+    </div>
   );
 };
 

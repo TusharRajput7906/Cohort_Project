@@ -1,5 +1,45 @@
 @import "tailwindcss";
 
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply min-h-dvh bg-zinc-50 text-zinc-900 antialiased;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  ::selection {
+    @apply bg-amber-200 text-zinc-950;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 shadow-sm outline-none;
+    @apply focus:border-amber-400 focus:ring-4 focus:ring-amber-100;
+    @apply placeholder:text-zinc-400;
+  }
+
+  textarea {
+    @apply min-h-28 resize-y;
+  }
+
+  button {
+    @apply select-none;
+  }
+}
+
 /* *{
   padding: 0;
   margin: 0;

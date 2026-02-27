@@ -26,7 +26,7 @@ const SingleRecipe = () => {
     const params = useParams();
     const { data, setData } = useContext(recipecontext);
     const recipe = data.find((recipe) => String(recipe.id) === String(params.id));
-    const { register, handleSubmit, reset } = useForm({
+    const { register, handleSubmit } = useForm({
         defaultValues: {
             title: recipe?.title,
             image: recipe?.image,
@@ -71,79 +71,92 @@ const SingleRecipe = () => {
 
     return (
         recipe ?
-            <div className='w-full flex'>
-                <div className="left w-1/2 p-2">
-                    <img src={recipe.image} alt="" />
-                    <h1>{recipe.title}</h1>
+            <div className="grid gap-6 lg:grid-cols-2">
+                <div className="space-y-4">
+                    <div className="overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm">
+                        <div className="aspect-4/3 bg-zinc-100">
+                            <img className="h-full w-full object-cover" src={recipe.image} alt={recipe.title} />
+                        </div>
+                        <div className="p-4 sm:p-6">
+                            <div className="flex flex-wrap items-start justify-between gap-3">
+                                <div>
+                                    <h1 className="text-2xl font-semibold tracking-tight text-zinc-900">{recipe.title}</h1>
+                                    <p className="mt-1 text-sm text-zinc-600">By {recipe.chef || "Unknown"}</p>
+                                </div>
+                                <div className="rounded-full bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-700 ring-1 ring-zinc-200">
+                                    {recipe.category || "Uncategorized"}
+                                </div>
+                            </div>
+                            <p className="mt-4 text-sm leading-relaxed text-zinc-700">{recipe.descriptions}</p>
+                        </div>
+                    </div>
                 </div>
 
-                <form className="right w-1/2 p-2" onSubmit={handleSubmit(updateHandle)}>
-                    <input
-                        className="block border-b outline-0 p-2"
-                        {...register("image")}
-                        type="url"
-                        // value={recipe.image}
-                        placeholder="Enter image url"
-                    />
-                    <small className="text-red-300">This is how the error is shown</small>
-                    <input
-                        className="block border-b outline-0 p-2"
-                        {...register("title")}
-                        type="text"
-                        // value={recipe.title}
-                        placeholder="Recipe title"
-                    />
-                    <small className="text-red-300">This is how the error is shown</small>
-                    <input
-                        className="block border-b outline-0 p-2"
-                        {...register("chef")}
-                        type="text"
-                        // value={recipe.chef}
-                        placeholder="chef name"
-                    />
-                    <small className="text-red-300">This is how the error is shown</small>
-                    <textarea
-                        className="block border-b outline-0 p-2"
-                        {...register("descriptions")}
-                        // value={recipe.descriptions}
-                        placeholder="//Start from here"
-                    />
-                    <small className="text-red-300">This is how the error is shown</small>
-                    <textarea
-                        className="block border-b outline-0 p-2"
-                        {...register("instructions")}
-                        // value={recipe.instructions}
-                        placeholder="//Write instructions seperated by comma"
-                    />
-                    <small className="text-red-300">This is how the error is shown</small>
-                    <textarea
-                        className="block border-b outline-0 p-2"
-                        {...register("ingredients")}
-                        // value={recipe.ingredients}
-                        placeholder="//Write ingredients seperated by comma"
-                    />
-                    <select
-                        // value={recipe.category}
-                        className="block border-b outline-0 p-2"
-                        {...register("category")}
-                    >
-                        <option className=" text-black" value="breakfast">
-                            Breakfast
-                        </option>
-                        <option className=" text-black" value="lunch">
-                            Lunch
-                        </option>
-                        <option className=" text-black" value="supper">
-                            Supper
-                        </option>
-                        <option className=" text-black" value="dinner">
-                            Dinner
-                        </option>
-                    </select>
-                    <button type="submit" className="mt-2 bg-blue-700 p-2 rounded">Update Recipe</button>
-                    <button type="button" onClick={deleteHandler} className="mt-2 block bg-red-700 p-2 rounded">Delete Recipe</button>
-                </form>
+                <form className="rounded-3xl border border-zinc-200 bg-white p-4 sm:p-6 shadow-sm" onSubmit={handleSubmit(updateHandle)}>
+                    <div className="mb-4">
+                        <h2 className="text-lg font-semibold text-zinc-900">Edit recipe</h2>
+                        <p className="mt-1 text-sm text-zinc-600">Update fields and save changes.</p>
+                    </div>
 
+                    <div className="grid gap-4">
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium text-zinc-800">Image URL</label>
+                            <input {...register("image")} type="url" placeholder="https://..." />
+                        </div>
+
+                        <div className="grid gap-2 sm:grid-cols-2">
+                            <div className="grid gap-2">
+                                <label className="text-sm font-medium text-zinc-800">Title</label>
+                                <input {...register("title")} type="text" placeholder="Recipe title" />
+                            </div>
+                            <div className="grid gap-2">
+                                <label className="text-sm font-medium text-zinc-800">Chef</label>
+                                <input {...register("chef")} type="text" placeholder="Chef name" />
+                            </div>
+                        </div>
+
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium text-zinc-800">Description</label>
+                            <textarea {...register("descriptions")} placeholder="Description" />
+                        </div>
+
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium text-zinc-800">Instructions</label>
+                            <textarea {...register("instructions")} placeholder="Write instructions separated by comma" />
+                        </div>
+
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium text-zinc-800">Ingredients</label>
+                            <textarea {...register("ingredients")} placeholder="Write ingredients separated by comma" />
+                        </div>
+
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium text-zinc-800">Category</label>
+                            <select {...register("category")}>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="supper">Supper</option>
+                                <option value="dinner">Dinner</option>
+                            </select>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3 pt-2">
+                            <button
+                                type="submit"
+                                className="inline-flex items-center justify-center rounded-xl bg-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-600 focus:outline-none focus:ring-4 focus:ring-amber-200"
+                            >
+                                Save changes
+                            </button>
+                            <button
+                                type="button"
+                                onClick={deleteHandler}
+                                className="inline-flex items-center justify-center rounded-xl border border-rose-200 bg-rose-50 px-4 py-2 text-sm font-semibold text-rose-700 shadow-sm hover:bg-rose-100 focus:outline-none focus:ring-4 focus:ring-rose-100"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
             : "Loading..."
     )
