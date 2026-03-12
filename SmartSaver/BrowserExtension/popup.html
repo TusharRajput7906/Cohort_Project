@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartSaver - Save Content</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 400px;
+      min-height: 500px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .logo {
+      font-size: 24px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #f1f5f9;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .status.success {
+      background: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+    }
+
+    .status.error {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+
+    .auto-filled {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: #6366f1;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .stats {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #334155;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+
+    .stat-label {
+      color: #94a3b8;
+    }
+
+    .stat-value {
+      color: #6366f1;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="logo">🧠</span>
+    <h1>SmartSaver</h1>
+  </div>
+
+  <form id="saveForm">
+    <div class="form-group">
+      <label>Content Type</label>
+      <select id="type" required>
+        <option value="article">Article</option>
+        <option value="tweet">Tweet</option>
+        <option value="youtube">YouTube Video</option>
+        <option value="image">Image</option>
+        <option value="pdf">PDF</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>URL</label>
+      <input type="url" id="url" required readonly>
+      <div class="hint">Auto-detected from current page</div>
+    </div>
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" id="title" required>
+      <div class="hint">Auto-filled from page title</div>
+    </div>
+
+    <div class="form-group">
+      <label>Description (Optional)</label>
+      <textarea id="description" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Tags (Optional, comma separated)</label>
+      <input type="text" id="tags" placeholder="javascript, tutorial, react">
+      <div class="hint">Additional tags will be auto-generated</div>
+    </div>
+
+    <button type="submit" class="btn" id="saveBtn">
+      💾 Save to SmartSaver
+    </button>
+
+    <div id="status" style="display: none;"></div>
+  </form>
+
+  <div class="stats" id="stats" style="display: none;">
+    <div class="stat-item">
+      <span class="stat-label">Total Saved</span>
+      <span class="stat-value" id="totalSaved">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Saved Today</span>
+      <span class="stat-value" id="savedToday">0</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
