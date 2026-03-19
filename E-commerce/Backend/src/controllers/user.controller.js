@@ -24,7 +24,7 @@ export async function registerController(req, res) {
 
   const token = jwt.sign(
     {
-      user: user._id,
+      id: user._id,
       email: user.email,
     },
     process.env.JWT_SECRET,
@@ -70,6 +70,7 @@ export async function loginController(req, res) {
   res.status(201).json({
     message: "User login successfullt",
     user: {
+      id:user._id,
       username: user.username,
       email: user.email,
     },
