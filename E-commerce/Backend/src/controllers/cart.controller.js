@@ -1,4 +1,4 @@
-import cardModel from "../models/card.model.js";
+import cartModel from "../models/cart.model.js";
 
 export async function addToCartController(req, res) {
   try {
@@ -9,7 +9,7 @@ export async function addToCartController(req, res) {
         message: "Unauthorized user",
       });
     }
-    const cart = await cardModel.create({
+    const cart = await cartModel.create({
       userId,
       productId,
       quantity,
@@ -29,15 +29,16 @@ export async function addToCartController(req, res) {
 export async function getCartController(req, res) {
   try {
     const userId = req.user?.id || req.user?.user;
-    const cartItems = await cardModel.find({ userId });
+    // Populate productId to get product details (including price)
+    const cartItems = await cartModel.find({ userId }).populate("productId");
     if (cartItems.length === 0) {
       return res.status(400).json({
-        message: "Card is Empty",
+        message: "Cart is Empty",
       });
     }
 
     res.status(200).json({
-      message: "Card items are here!",
+      message: "Cart items are here!",
       cartItems,
     });
   } catch (err) {
@@ -57,10 +58,13 @@ export async function removeCartItemController(req, res) {
         message: "Unauthorized user",
       });
     }
-    const item = await cardModel.findByIdAndDelete(id);
+    const item = await cartModel.findOneAndDelete({
+      _id:id,
+      userId:userId
+    });
 
     res.status(200).json({
-      message: "Remove the item form cart",
+      message: "Remove the item from cart",
       item,
     });
   } catch (err) {
