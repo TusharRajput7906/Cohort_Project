@@ -1,4 +1,5 @@
 import cartModel from "../models/cart.model.js";
+import productModel from "../models/product.model.js";
 
 export async function addToCartController(req, res) {
   try {
@@ -7,6 +8,13 @@ export async function addToCartController(req, res) {
     if (!userId) {
       return res.status(401).json({
         message: "Unauthorized user",
+      });
+    }
+    // Validate productId exists
+    const product = await productModel.findById(productId);
+    if (!product) {
+      return res.status(404).json({
+        message: "Product not found. Cannot add to cart."
       });
     }
     const cart = await cartModel.create({

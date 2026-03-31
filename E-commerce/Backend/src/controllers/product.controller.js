@@ -113,7 +113,7 @@ export async function updateProductController(req, res) {
     const product = await productModel.findOneAndUpdate(
       { _id: productId, userId },
       update,
-      { new: true }
+      { returnDocument: "after" }
     );
 
     if (!product) {

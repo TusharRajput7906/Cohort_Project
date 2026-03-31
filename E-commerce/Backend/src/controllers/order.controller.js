@@ -18,6 +18,9 @@ export async function createOrderController(req, res) {
     }
     let totalAmount = 0;
     const products = cartItems.map((item) => {
+      if (!item.productId) {
+        throw new Error("Product not found");
+      }
       totalAmount += item.productId.price * item.quantity;
 
       return {
@@ -29,17 +32,41 @@ export async function createOrderController(req, res) {
       userId,
       products,
       totalAmount,
+      status: "pending",
     });
-    // Update order status to 'complete' after creation
-    order = await orderModel.findByIdAndUpdate(
-      order._id,
-      { status: "complete" },
-      { new: true },
-    );
+
     await cartModel.deleteMany({ userId });
-    res.status(200).json({
+    res.status(201).json({
       message: "Order placed Successfully",
       order,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error",
+      error: err.message,
+    });
+  }
+}
+
+export async function getOrderController(req, res) {
+  try {
+    const userId = req.user?.id || req.user?.user;
+    if (!userId) {
+      return res.status(401).json({
+        message: "Unauthorized user",
+      });
+    }
+    const orders = await orderModel
+      .find({ userId })
+      .populate("products.productId");
+    if (!orders || orders.length === 0) {
+      return res.status(404).json({
+        message: "No orders found",
+      });
+    }
+    res.status(200).json({
+      message: "Orders fetched successfully!",
+      orders,
     });
   } catch (err) {
     res.status(500).json({
