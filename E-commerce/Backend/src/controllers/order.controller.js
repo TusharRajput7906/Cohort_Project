@@ -11,7 +11,7 @@ export async function createOrderController(req, res) {
       });
     }
     const cartItems = await cartModel.find({ userId }).populate("productId");
-    if (cartItems.length == 0) {
+    if (cartItems.length === 0) {
       return res.status(400).json({
         message: "Cart is Empty",
       });
@@ -67,6 +67,109 @@ export async function getOrderController(req, res) {
     res.status(200).json({
       message: "Orders fetched successfully!",
       orders,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error",
+      error: err.message,
+    });
+  }
+}
+
+export async function getSingleOrderController(req, res) {
+  try {
+    const orderId = req.params.id;
+    const userId = req.user?.id || req.user?.user;
+    if (!userId) {
+      return res.status(401).json({
+        message: "Unauthorized user",
+      });
+    }
+    const order = await orderModel
+      .findOne({
+        _id: orderId,
+        userId: userId,
+      })
+      .populate("products.productId");
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+    res.status(200).json({
+      message: "Order is here!",
+      order,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error",
+      error: err.message,
+    });
+  }
+}
+
+export async function updateOrderStatusController(req, res) {
+  try {
+    const orderId = req.params.id;
+    const userId = req.user?.id || req.user?.user;
+    if (!userId) {
+      return res.status(401).json({
+        message: "Unauthorized user",
+      });
+    }
+    const { status } = req.body;
+    const validStatus = ["pending", "completed", "cancelled"];
+
+    if (!validStatus.includes(status)) {
+      return res.status(400).json({
+        message: "Invalid status",
+      });
+    }
+    const order = await orderModel.findOneAndUpdate(
+      { _id: orderId, userId },
+      { status },
+      { new: true },
+    );
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+    res.status(200).json({
+      message: "Order status Updated",
+      order,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Server error",
+      error: err.message,
+    });
+  }
+}
+
+export async function deleteOrderController(req, res) {
+  try {
+    const orderId = req.params.id;
+    const userId = req.user?.id || req.user?.user;
+    if (!userId) {
+      return res.status(401).json({
+        message: "Unauthorized user",
+      });
+    }
+    const order = await orderModel.findOneAndDelete({
+      _id: orderId,
+      userId,
+    });
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Order deleted",
+      order,
     });
   } catch (err) {
     res.status(500).json({
